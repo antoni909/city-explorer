@@ -45,7 +45,6 @@ Built using the following technologies:
 
 - Project Collaborators: Michelle Pannosch
 
-
 ![Web Request Response Cycle Diagram for Lab-06](/public/assets/lab06-WRR-cycle.jpg)
 
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->
@@ -57,6 +56,8 @@ Built using the following technologies:
 [W3 Schools](https://www.w3schools.com/)
 
 [StackOverflow - to fix submit event handler](https://stackoverflow.com/questions/37239799/can-not-submit-form-react-bootstrap)
+
+[Saturn Emoji](https://emojipedia.org/ringed-planet/)
 
 ## Name of feature: Respository and API Key Setup
 
