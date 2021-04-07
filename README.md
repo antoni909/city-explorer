@@ -44,8 +44,19 @@ Built using the following technologies:
 ## Credit and Collaborations
 
 - Project Collaborators: Michelle Pannosch
+
+
 ![Web Request Response Cycle Diagram for Lab-06](/public/assets/lab06-WRR-cycle.jpg)
+
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->
+
+## Links and Resources used
+
+[Bootstrap React Component Docs](https://react-bootstrap.github.io/components/forms/#forms-layout-grid)
+
+[W3 Schools](https://www.w3schools.com/)
+
+[StackOverflow - to fix submit event handler](https://stackoverflow.com/questions/37239799/can-not-submit-form-react-bootstrap)
 
 ## Name of feature: Respository and API Key Setup
 
