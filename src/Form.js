@@ -17,9 +17,9 @@ class FormSearch extends React.Component{
               size="lg" type="text"
               placeholder="city, state, country, planet, solar system, galaxy, universe, dimension, uhmm... multiverse? " />
             <Button
-              variant="dark"
+              variant="primary"
               type="submit" size="lg"
-            >Submit
+            >🪐 Explore!
             </Button>
           </Col>
         </Row>
