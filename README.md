@@ -1,5 +1,7 @@
 # City Explorer App
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/eb9ccd94-0af4-4cb3-9c70-a2efcaf75139/deploy-status)](https://app.netlify.com/sites/vigorous-ride-dc9045/deploys)
+
 **Author**: Lorenzo Ortega
 **Version**: 1.0.0
 
