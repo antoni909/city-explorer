@@ -1,4 +1,7 @@
 import React from 'react';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import Header from './Header.js';
 import Form from './Form';
 import City from './City';
@@ -11,9 +14,10 @@ class App extends React.Component{
   // NOTES:
   // process.env.REACT_APP_ACCESS_KEY_LOCATIONIQ_KEY to use locationIQ Key in URL
   // searchTextFieldValue: changed from function declaration to arow function and stopped getting "Cannot read property 'setState' of undefined" - i beliieve it has to do with "this" context but why is it different with arrow function?
+  // do i need event parameter passed in for handle functions
 
   // TODOS:
-  // Create a helper function that gets URL for respective city instead of doing this in the City component
+  // Create a helper function that gets MAP image (using URL) for respective city INSTEAD of doing this in the City component
 
   constructor(props){
     super(props);
@@ -27,7 +31,7 @@ class App extends React.Component{
     };
   }
 
-  // TextField
+  // TextField - for fun display characters being types
   searchTextFieldValue= (event) => {
     event.preventDefault();
     if(event.target.value){
@@ -45,13 +49,10 @@ class App extends React.Component{
   // Submit Button
   // GET locaiton IQ
   // Promise returns dataLIQ - location iq data for city searched
-  // GET MAP URL:
   searchSubmitHandler = async (event) => {
     event.preventDefault();
-    console.log('submit button is active');
 
     let dataLIQ = await axios.get(`https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_ACCESS_KEY_LOCATIONIQ_KEY}&q=${this.state.citySearchTextField}&format=json`);
-    console.log(dataLIQ);
 
     return this.setState({
       display: true,
@@ -62,27 +63,30 @@ class App extends React.Component{
   }
 
   render(){
-    // console.log('map', this.state.mapSource );
     return(
-      <>
-        <Header />
-        <Form
-          onInput={this.searchTextFieldValue}
-          onSubmit={this.searchSubmitHandler}
-        />
-        <h2>
-          Your City:
-          {this.state.citySearchTextField}
-        </h2>
-        <City
-          display={this.state.display}
-          displayCityName={this.state.displayCityName}
-          displayLat={this.state.displayLat}
-          displayLon={this.state.displayLon}
-          // mapSource={this.state.mapSource}
-        />
-        <Footer />
-      </>
+      <Container fluid>
+        <Row >
+          <Col>
+            <Header />
+            <Form
+              onInput={this.searchTextFieldValue}
+              onSubmit={this.searchSubmitHandler}
+            />
+            <h2>
+              Your City:
+              {this.state.citySearchTextField}
+            </h2>
+            <City
+              display={this.state.display}
+              displayCityName={this.state.displayCityName}
+              displayLat={this.state.displayLat}
+              displayLon={this.state.displayLon}
+            />
+            <Footer />
+          </Col>
+        </Row>
+      </Container>
+
     );
   }
 }
