@@ -97,3 +97,13 @@ Start time: 1430
 Finish time: 1757
 
 Actual time needed to complete: 3.45 hours
+
+## Name of feature: map
+
+Estimate of time needed to complete: 1 hour
+
+Start time: 1930
+
+Finish time: 2109
+
+Actual time needed to complete: 1.6 hours
