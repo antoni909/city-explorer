@@ -5,7 +5,7 @@ import City from './City';
 import Footer from './Footer.js';
 import './App.css';
 import axios from 'axios';
-// console.log(process.env);
+
 
 class App extends React.Component{
   // NOTES:
