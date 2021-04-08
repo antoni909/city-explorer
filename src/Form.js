@@ -18,7 +18,7 @@ class FormSearch extends React.Component{
           </Col>
           <Col>
             <Button
-              variant="primary"
+              variant="dark"
               type="submit" size="lg"
             >🪐 Explore!
             </Button>
