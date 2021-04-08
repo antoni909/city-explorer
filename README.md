@@ -11,6 +11,8 @@ Today you will be building a React application that uses the Axios library to ma
 
 ## Getting Started
 <!-- What are the steps that a user must take in order to build this app on their own machine and get it running? -->
+- Setup Feature
+
 Create a new repo called city-explorer on GitHub, initialized with a README file. Clone it locally, and do all your work on a meaningfully-named feature branch off of main.
 Use create-react-app to setup a new React application in your lab repo.
 README.md - with documentation regarding your lab and its current state of development. Check the "documentation" section of the lab assignment for more details on how that should look AT MINIMUM
@@ -21,6 +23,15 @@ Procure a LocationIQ free-tier account. From the Dashboard, navigate to your API
 MOST IMPORTANTLY: Add your deployed Netflify app url as an HTTP Referrer to your API token settings. This step is necessary to prevent any unauthorized use of your token.
 .env: Your API key goes here for local development. Make sure this file is in your .gitignore.
 Add your API key to your Netlify deployment. Under "Site settings" > "Build & deploy" > "Environment", you need to add "Edit variables" to add your API key, giving it the same name you used in your local .env file.
+Add an item
+
+- Location Feauture
+
+Create a route with a method of get and a path of /location. The route callback should invoke a function to convert the search query to a latitude and longitude. The function should use the provided JSON data.
+Build a form to collect a city name from the user. Give the submit button the text of "Explore!".
+Use the data from the form to query LocationIQ for the latitude and longitude of the requested city.
+Update the page with the returned display_name, latitude, and longitude, displayed nicely in an appropriate Bootstrap component.
+Deploy your updated React app to Netlify by committing and pushing your code to your open pull request on GitHub.
 Add an item
 
 ## Architecture
@@ -70,3 +81,13 @@ Start time: 2130
 Finish time: 2330
 
 Actual time needed to complete: 2 hours
+
+## Name of feature: Location
+
+Estimate of time needed to complete: 3 hour
+
+Start time: 1430
+
+Finish time: 1757
+
+Actual time needed to complete: 3.45 hours
