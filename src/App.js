@@ -11,6 +11,10 @@ class App extends React.Component{
   // NOTES:
   // process.env.REACT_APP_ACCESS_KEY_LOCATIONIQ_KEY to use locationIQ Key in URL
   // searchTextFieldValue: changed from function declaration to arow function and stopped getting "Cannot read property 'setState' of undefined" - i beliieve it has to do with "this" context but why is it different with arrow function?
+
+  // TODOS:
+  // Create a helper function that gets URL for respective city instead of doing this in the City component
+
   constructor(props){
     super(props);
     this.state = {
@@ -19,6 +23,7 @@ class App extends React.Component{
       displayCityName: '',
       displayLat: '',
       displayLon: '',
+      displayMapSrc: '',
     };
   }
 
@@ -32,39 +37,32 @@ class App extends React.Component{
     }else this.setState({
       citySearchTextField: 'pick a city...',
       displayCityName: '',
-      display: false
+      display: false,
+      mapSource: '',
     });
   }
 
   // Submit Button
   // GET locaiton IQ
   // Promise returns dataLIQ - location iq data for city searched
+  // GET MAP URL:
   searchSubmitHandler = async (event) => {
-    // event.preventDefault();
-
+    event.preventDefault();
     console.log('submit button is active');
+
     let dataLIQ = await axios.get(`https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_ACCESS_KEY_LOCATIONIQ_KEY}&q=${this.state.citySearchTextField}&format=json`);
-
-    // console.log(dataLIQ);
-
-    return this.cityData(dataLIQ);
-  }
-
-  // Get name, lat, lon, display is true
-  cityData = (data) => {
+    console.log(dataLIQ);
 
     return this.setState({
       display: true,
-      displayCityName: data.data[0].display_name,
-      displayLat: data.data[0].lat,
-      displayLon: data.data[0].lon,
+      displayCityName: dataLIQ.data[0].display_name,
+      displayLat: dataLIQ.data[0].lat,
+      displayLon: dataLIQ.data[0].lon,
     });
-
-    // console.log(this.seState());
   }
 
   render(){
-    // console.log('state val is: ',this.state.citySearchTextField);
+    // console.log('map', this.state.mapSource );
     return(
       <>
         <Header />
@@ -81,6 +79,7 @@ class App extends React.Component{
           displayCityName={this.state.displayCityName}
           displayLat={this.state.displayLat}
           displayLon={this.state.displayLon}
+          // mapSource={this.state.mapSource}
         />
         <Footer />
       </>
