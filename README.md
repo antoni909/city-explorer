@@ -54,7 +54,13 @@ Built using the following technologies:
 
 ## Credit and Collaborations
 
-- Project Collaborators: Michelle Pannosch
+- Project Collaborators:
+
+  - Michelle Pannosch
+
+- Instructor and TA help:
+
+  - Joe Pennosch: dubug map url 403 error
 
 ![Web Request Response Cycle Diagram for Lab-06](/public/assets/lab06-WRR-cycle.jpg)
 
