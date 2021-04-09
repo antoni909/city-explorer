@@ -107,3 +107,13 @@ Start time: 1930
 Finish time: 2109
 
 Actual time needed to complete: 1.6 hours
+
+## Name of feature: error
+
+Estimate of time needed to complete: 1 hour
+
+Start time: 2031
+
+Finish time: 2133
+
+Actual time needed to complete: ~ 1 hour
