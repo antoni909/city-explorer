@@ -14,7 +14,7 @@ class FormSearch extends React.Component{
             <Form.Control
               onInput={this.props.onInput}
               size="lg" type="text"
-              placeholder="city, state, country, planet, solar system, galaxy, universe, dimension, uhmm... multiverse? " />
+              placeholder="city, state, country" />
           </Col>
           <Col>
             <Button

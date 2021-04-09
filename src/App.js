@@ -5,6 +5,7 @@ import Col from 'react-bootstrap/Col';
 import Header from './Header.js';
 import Form from './Form';
 import City from './City';
+import Err from './Err';
 import Footer from './Footer.js';
 import './App.css';
 import axios from 'axios';
@@ -22,12 +23,14 @@ class App extends React.Component{
   constructor(props){
     super(props);
     this.state = {
-      citySearchTextField: ' pick a city...',
+      citySearchTextField: '',
       display: false,
       displayCityName: '',
       displayLat: '',
       displayLon: '',
-      displayMapSrc: '',
+      displayError: false,
+      errMessage: '',
+      err: '',
     };
   }
 
@@ -39,7 +42,7 @@ class App extends React.Component{
         citySearchTextField: event.target.value
       });
     }else this.setState({
-      citySearchTextField: 'pick a city...',
+      citySearchTextField: '',
       displayCityName: '',
       display: false,
       mapSource: '',
@@ -51,15 +54,28 @@ class App extends React.Component{
   // Promise returns dataLIQ - location iq data for city searched
   searchSubmitHandler = async (event) => {
     event.preventDefault();
+    //to prevent page refresh
 
-    let dataLIQ = await axios.get(`https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_ACCESS_KEY_LOCATIONIQ_KEY}&q=${this.state.citySearchTextField}&format=json`);
+    try{
+      // console.log('try is working');
+      let dataLIQ = await axios.get(`https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_ACCESS_KEY_LOCATIONIQ_KEY}&q=${this.state.citySearchTextField}&format=json`);
 
-    return this.setState({
-      display: true,
-      displayCityName: dataLIQ.data[0].display_name,
-      displayLat: dataLIQ.data[0].lat,
-      displayLon: dataLIQ.data[0].lon,
-    });
+      return this.setState({
+        display: true,
+        displayCityName: dataLIQ.data[0].display_name,
+        displayLat: dataLIQ.data[0].lat,
+        displayLon: dataLIQ.data[0].lon,
+      });
+    }catch(err){
+      // err.response.data.error gives request TYPE
+      // err.message gives the error message
+      // console.log('catch is working');
+      this.setState({
+        displayError: true,
+        errMessage: err.message,
+        err: err.response.data.error,
+      });
+    }
   }
 
   render(){
@@ -68,14 +84,21 @@ class App extends React.Component{
         <Row >
           <Col>
             <Header />
+            <br/>
             <Form
               onInput={this.searchTextFieldValue}
               onSubmit={this.searchSubmitHandler}
             />
-            <h2>
+            {/* <h2>
               Your City:
               {this.state.citySearchTextField}
-            </h2>
+            </h2> */}
+            <br/>
+            <Err
+              displayError={this.state.displayError}
+              errMessage={this.state.errMessage}
+              err={this.state.err}
+            />
             <City
               display={this.state.display}
               displayCityName={this.state.displayCityName}
@@ -86,7 +109,6 @@ class App extends React.Component{
           </Col>
         </Row>
       </Container>
-
     );
   }
 }
