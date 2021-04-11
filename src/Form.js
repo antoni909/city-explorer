@@ -6,7 +6,6 @@ import Col from 'react-bootstrap/Col';
 
 class FormSearch extends React.Component{
   render(){
-    // component exported as FormSearch and imported on App as Form...why is this?
     return(
       <Form onSubmit={this.props.onSubmit} >
         <Form.Row>

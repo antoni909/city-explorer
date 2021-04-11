@@ -12,13 +12,6 @@ import axios from 'axios';
 
 
 class App extends React.Component{
-  // NOTES:
-  // process.env.REACT_APP_ACCESS_KEY_LOCATIONIQ_KEY to use locationIQ Key in URL
-  // searchTextFieldValue: changed from function declaration to arow function and stopped getting "Cannot read property 'setState' of undefined" - i beliieve it has to do with "this" context but why is it different with arrow function?
-  // do i need event parameter passed in for handle functions
-
-  // TODOS:
-  // Create a helper function that gets MAP image (using URL) for respective city INSTEAD of doing this in the City component
 
   constructor(props){
     super(props);
@@ -34,7 +27,6 @@ class App extends React.Component{
     };
   }
 
-  // TextField - for fun display characters being types
   searchTextFieldValue= (event) => {
     event.preventDefault();
     if(event.target.value){
@@ -45,19 +37,13 @@ class App extends React.Component{
       citySearchTextField: '',
       displayCityName: '',
       display: false,
-      mapSource: '',
     });
   }
 
-  // Submit Button
-  // GET locaiton IQ
-  // Promise returns dataLIQ - location iq data for city searched
   searchSubmitHandler = async (event) => {
     event.preventDefault();
-    //to prevent page refresh
 
     try{
-      // console.log('try is working');
       let dataLIQ = await axios.get(`https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_ACCESS_KEY_LOCATIONIQ_KEY}&q=${this.state.citySearchTextField}&format=json`);
 
       return this.setState({
@@ -67,9 +53,6 @@ class App extends React.Component{
         displayLon: dataLIQ.data[0].lon,
       });
     }catch(err){
-      // err.response.data.error gives request TYPE
-      // err.message gives the error message
-      // console.log('catch is working');
       this.setState({
         displayError: true,
         errMessage: err.message,
@@ -89,10 +72,6 @@ class App extends React.Component{
               onInput={this.searchTextFieldValue}
               onSubmit={this.searchSubmitHandler}
             />
-            {/* <h2>
-              Your City:
-              {this.state.citySearchTextField}
-            </h2> */}
             <br/>
             <Err
               displayError={this.state.displayError}

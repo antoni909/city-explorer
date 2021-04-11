@@ -6,9 +6,6 @@ import Image from 'react-bootstrap/Image';
 
 class City extends React.Component{
   render(){
-    // console.log(this.props);
-    // TODO:
-    // display JUMBOTRON only after search is submitted
     return(
       <>
         {this.props.display?
