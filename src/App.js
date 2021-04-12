@@ -6,12 +6,17 @@ import Header from './Header.js';
 import Form from './Form';
 import City from './City';
 import Err from './Err';
+import Weather from './Weather';
 import Footer from './Footer.js';
 import './App.css';
 import axios from 'axios';
 
 
 class App extends React.Component{
+
+  //instead of using event/ find new way to get value from search field
+  //use state.display to activate axios weather call
+  // weather is an array of day objects
 
   constructor(props){
     super(props);
@@ -24,6 +29,7 @@ class App extends React.Component{
       displayError: false,
       errMessage: '',
       err: '',
+      weatherData: [],
     };
   }
 
@@ -42,21 +48,27 @@ class App extends React.Component{
 
   searchSubmitHandler = async (event) => {
     event.preventDefault();
-
     try{
       let dataLIQ = await axios.get(`https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_ACCESS_KEY_LOCATIONIQ_KEY}&q=${this.state.citySearchTextField}&format=json`);
 
-      return this.setState({
+      // url needs to be fixed here
+      let API = 'http://localhost:3002';
+      let weather = await axios.get(`${API}/weather`);
+
+      console.log(this.state.weather);
+
+      this.setState({
         display: true,
         displayCityName: dataLIQ.data[0].display_name,
         displayLat: dataLIQ.data[0].lat,
         displayLon: dataLIQ.data[0].lon,
+        weatherData: weather.data,
       });
     }catch(err){
       this.setState({
         displayError: true,
         errMessage: err.message,
-        err: err.response.data.error,
+        // err: err.response.data.error,
       });
     }
   }
@@ -83,6 +95,10 @@ class App extends React.Component{
               displayCityName={this.state.displayCityName}
               displayLat={this.state.displayLat}
               displayLon={this.state.displayLon}
+            />
+            <Weather
+              display={this.state.display}
+              weather={this.state.weatherData}
             />
             <Footer />
           </Col>
