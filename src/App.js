@@ -51,11 +51,8 @@ class App extends React.Component{
     try{
       let dataLIQ = await axios.get(`https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_ACCESS_KEY_LOCATIONIQ_KEY}&q=${this.state.citySearchTextField}&format=json`);
 
-      // url needs to be fixed here
       let API = 'http://localhost:3002';
       let weather = await axios.get(`${API}/weather`);
-
-      console.log(this.state.weather);
 
       this.setState({
         display: true,
@@ -68,7 +65,7 @@ class App extends React.Component{
       this.setState({
         displayError: true,
         errMessage: err.message,
-        // err: err.response.data.error,
+        err: err.response.data.error,
       });
     }
   }
