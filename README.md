@@ -60,6 +60,7 @@ Built using the following technologies:
 
 - Instructor and TA help:
 
+  - Ryan / Hex King: debug netlify deployment
   - Joe Pennosch: dubug map url 403 error
 
 ![Web Request Response Cycle Diagram for Lab-06](/public/assets/lab06-WRR-cycle.jpg)
@@ -117,3 +118,17 @@ Start time: 2031
 Finish time: 2133
 
 Actual time needed to complete: ~ 1 hour
+
+## Name of feature: server error message/set up local server
+
+Estimate of time needed to complete: 4 hour
+
+Start time: 1330
+
+Finish time: 1807
+
+Start time: 1501
+
+Finish time: 1702
+
+Actual time needed to complete: ~ 7 hours
