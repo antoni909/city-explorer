@@ -7,7 +7,14 @@ class Err extends React.Component{
       <>
         {this.props.displayError?
           <Card>
-            <Card.Body>{this.props.err}: {this.props.errMessage}</Card.Body>
+            <Card.Body>
+              <Card.Text>
+                {this.props.err}: {this.props.errMessage}
+              </Card.Text>
+              <Card.Text>
+                Server Error: {this.props.serverErr}
+              </Card.Text>
+            </Card.Body>
           </Card> :
           ''}
       </>
