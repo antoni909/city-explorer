@@ -29,6 +29,7 @@ class App extends React.Component{
       displayError: false,
       errMessage: '',
       err: '',
+      serverErr: '',
       weatherData: [],
     };
   }
@@ -51,8 +52,9 @@ class App extends React.Component{
     try{
       let dataLIQ = await axios.get(`https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_ACCESS_KEY_LOCATIONIQ_KEY}&q=${this.state.citySearchTextField}&format=json`);
 
-      let API = 'http://localhost:3002';
-      let weather = await axios.get(`${API}/weather`);
+      // let API = 'http://localhost:3002';
+      // let weather = await axios.get(`${API}/weather`);
+      let weather = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/weather`);
 
       this.setState({
         display: true,
@@ -66,6 +68,7 @@ class App extends React.Component{
         displayError: true,
         errMessage: err.message,
         err: err.response.data.error,
+        serverErr: err.message,
       });
     }
   }
@@ -86,6 +89,7 @@ class App extends React.Component{
               displayError={this.state.displayError}
               errMessage={this.state.errMessage}
               err={this.state.err}
+              serverErr={this.state.serverErr}
             />
             <City
               display={this.state.display}
