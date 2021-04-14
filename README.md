@@ -65,6 +65,8 @@ Built using the following technologies:
 
 ![Web Request Response Cycle Diagram for Lab-06](/public/assets/lab06-WRR-cycle.jpg)
 
+![Web Request Response Cycle Diagram for Lab-07](/public/assets/lab07.png)
+
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->
 
 ## Links and Resources used
