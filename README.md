@@ -41,9 +41,14 @@ Built using the following technologies:
 - React
 - React Bootstrap
 - Node.JS and npm
-- axios
+- axios(frontend)
+-superagent (backend)
+
+API's
+
 - LocationIQ API
-- Trello Manager
+- WeatherBit.io API
+- Trello Board Manager
 <!-- Provide a detailed description of the application design. What technologies (languages, libraries, etc) you're using, and any other relevant design information. -->
 ## Change Log
 
@@ -56,12 +61,12 @@ Built using the following technologies:
 
 - Project Collaborators:
 
-  - Michelle Pannosch
+  - Michelle Pannock
 
 - Instructor and TA help:
 
-  - Ryan / Hex King: debug netlify deployment
-  - Joe Pennosch: dubug map url 403 error
+  - Ryan Gallaway / Hex King: debug netlify deployment
+  - Joe Pennosch: dubug map url error
 
 ![Web Request Response Cycle Diagram for Lab-06](/public/assets/lab06-WRR-cycle.jpg)
 
@@ -134,3 +139,13 @@ Start time: 1501
 Finish time: 1702
 
 Actual time needed to complete: ~ 7 hours
+
+## Name of feature: live weather api
+
+Estimate of time needed to complete: 1 hour
+
+Start time: 1622
+
+Finish time: 1737
+
+Actual time needed to complete: 1.25 hours

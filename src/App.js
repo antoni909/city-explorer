@@ -11,12 +11,13 @@ import Footer from './Footer.js';
 import './App.css';
 import axios from 'axios';
 
+// TODOS:
+//instead of using event/ find new way to get value from search field
+//use state.display to activate axios weather call
+// weather is an array of day objects
 
 class App extends React.Component{
 
-  //instead of using event/ find new way to get value from search field
-  //use state.display to activate axios weather call
-  // weather is an array of day objects
 
   constructor(props){
     super(props);
@@ -52,24 +53,60 @@ class App extends React.Component{
     try{
       let dataLIQ = await axios.get(`https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_ACCESS_KEY_LOCATIONIQ_KEY}&q=${this.state.citySearchTextField}&format=json`);
 
-      // let API = 'http://localhost:3002';
-      // let weather = await axios.get(`${API}/weather`);
-      let weather = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/weather`);
+      // let weather = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/weather`, { params: { lat: data.lat, lon: data.lon } } );
 
       this.setState({
         display: true,
         displayCityName: dataLIQ.data[0].display_name,
         displayLat: dataLIQ.data[0].lat,
         displayLon: dataLIQ.data[0].lon,
-        weatherData: weather.data,
+        // weatherData will be controlled by live weather instead not static file
       });
+
+      // pass arguments to weather and movie api here
+      // example: getWeather( argument ) where weather array is the arg for some (param)
+      console.log('arg passed: ',dataLIQ.data[0]);
+      this.getLiveWeather( dataLIQ.data[0] );
+      // array of objects (10 cities)
+      // pass to backend request to get ask for lat/lon params
+      // something like: { parmas: { lat: data.lat, lon: data.lon } }
+
     }catch(err){
       this.setState({
         displayError: true,
         errMessage: err.message,
         err: err.response.data.error,
-        serverErr: err.message,
+        // serverErr: err.message,
       });
+    }
+  }
+
+  getLiveWeather = async(data) => {
+    // console.log(data, data.lon, data.lat);
+    // argument value passed to data is an object containing lat and lon properties
+    // request to backend where response will give a 10 day forecast (weather.data) and weather is the response object with heroku url
+    // console.log('weather: ' ,weather);
+    // console.log('weather.data: ', weather.data);
+    // the endpoint /weather must match backend
+    try{
+      console.log(data.lat, data.lon);
+      let weather = await axios.get(
+        `${process.env.REACT_APP_BACKEND_URL}/weather`, {
+          params: {
+            lat: data.lat,
+            lon: data.lon,
+          }});
+
+      this.setState({
+        display: true,
+        weatherData: weather.data,
+      });
+    }catch(err){
+      console.error();
+      this.setState( {
+        displayError: true,
+        serverErr: err.message,
+      } );
     }
   }
 
