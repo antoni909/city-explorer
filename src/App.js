@@ -1,24 +1,25 @@
 import React from 'react';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Header from './Header.js';
-import Form from './Form';
 import City from './City';
+import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/Container';
 import Err from './Err';
-import Weather from './Weather';
 import Footer from './Footer.js';
+import Form from './Form';
+import Header from './Header.js';
+import Movies from './Movies.js';
+import Row from 'react-bootstrap/Row';
+import Weather from './Weather';
 import './App.css';
 import axios from 'axios';
 
-// TODOS:
-//instead of using event/ find new way to get value from search field
-//use state.display to activate axios weather call
-// weather is an array of day objects
+/*// console.log(data, data.lon, data.lat);
+// argument value passed to data is an object containing lat and lon properties
+// request to backend where response will give a 10 day forecast (weather.data) and weather is the response object with heroku url
+// console.log('weather: ' ,weather);
+// console.log('weather.data: ', weather.data);
+// the endpoint /weather must match backend*/
 
 class App extends React.Component{
-
-
   constructor(props){
     super(props);
     this.state = {
@@ -27,9 +28,11 @@ class App extends React.Component{
       displayCityName: '',
       displayLat: '',
       displayLon: '',
+      displayMovies: false,
       displayError: false,
       errMessage: '',
       err: '',
+      movieData: [],
       serverErr: '',
       weatherData: [],
     };
@@ -60,13 +63,12 @@ class App extends React.Component{
         displayCityName: dataLIQ.data[0].display_name,
         displayLat: dataLIQ.data[0].lat,
         displayLon: dataLIQ.data[0].lon,
-        // weatherData will be controlled by live weather instead not static file
       });
-
       // pass arguments to weather and movie api here
       // example: getWeather( argument ) where weather array is the arg for some (param)
-      console.log('arg passed: ',dataLIQ.data[0]);
+      console.log('arg passed: ',this.state.citySearchTextField);
       this.getLiveWeather( dataLIQ.data[0] );
+      this.getLiveMovies(this.state.citySearchTextField);
       // array of objects (10 cities)
       // pass to backend request to get ask for lat/lon params
       // something like: { parmas: { lat: data.lat, lon: data.lon } }
@@ -76,33 +78,48 @@ class App extends React.Component{
         displayError: true,
         errMessage: err.message,
         err: err.response.data.error,
-        // serverErr: err.message,
+        serverErr: err.message,
       });
     }
   }
 
-  getLiveWeather = async(data) => {
-    // console.log(data, data.lon, data.lat);
-    // argument value passed to data is an object containing lat and lon properties
-    // request to backend where response will give a 10 day forecast (weather.data) and weather is the response object with heroku url
-    // console.log('weather: ' ,weather);
-    // console.log('weather.data: ', weather.data);
-    // the endpoint /weather must match backend
+  getLiveMovies = async(city) => {
+    console.log('arg passed to param data : ', city);
     try{
-      console.log(data.lat, data.lon);
+      let movies = await axios.get(
+        `${process.env.REACT_APP_BACKEND_URL}/movies`, {
+          params: {
+            citySearchTextField : city,
+          }
+        });
+      this.setState({
+        displayMovies: true,
+        movieData: movies,
+      });
+    }catch(err){
+      this.setState( {
+        displayError: true,
+        serverErr: err.message,
+      } );
+    }
+
+  }
+
+  getLiveWeather = async(data) => {
+
+    try{
       let weather = await axios.get(
         `${process.env.REACT_APP_BACKEND_URL}/weather`, {
           params: {
             lat: data.lat,
             lon: data.lon,
-          }});
-
+          }
+        });
       this.setState({
         display: true,
         weatherData: weather.data,
       });
     }catch(err){
-      console.error();
       this.setState( {
         displayError: true,
         serverErr: err.message,
@@ -138,12 +155,16 @@ class App extends React.Component{
               display={this.state.display}
               weather={this.state.weatherData}
             />
+            <Movies
+              display={this.state.displayMovies}
+              movieData={this.state.movieData}/>
             <Footer />
           </Col>
         </Row>
       </Container>
     );
   }
+
 }
 
 export default App;
