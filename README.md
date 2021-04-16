@@ -65,12 +65,15 @@ API's
 
 - Instructor and TA help:
 
-  - Ryan Gallaway / Hex King: debug netlify deployment
-  - Joe Pennosch: dubug map url error
+  - Instructor Ryan Gallaway
+  - T.A. Hex King - debug netlify deployment
+  - T.A. Paul O’Brien - GET requests
 
 ![Web Request Response Cycle Diagram for Lab-06](/public/assets/lab06-WRR-cycle.jpg)
 
 ![Web Request Response Cycle Diagram for Lab-07](/public/assets/lab07.png)
+
+![Web Request Response Cycle Diagram for Lab-08](/public/assets/lab08.jpeg)
 
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->
 
