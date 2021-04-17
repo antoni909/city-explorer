@@ -75,6 +75,8 @@ API's
 
 ![Web Request Response Cycle Diagram for Lab-08](/public/assets/lab08.jpeg)
 
+![Web Request Response Cycle Diagram for Lab-09](/public/assets/lab09.jpg)
+
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->
 
 ## Links and Resources used
