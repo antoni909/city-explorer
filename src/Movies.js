@@ -5,12 +5,12 @@ import Carousel from 'react-bootstrap/Carousel';
 
 class Movies extends React.Component{
   render(){
-    // console.log('this.props.movieData: ',this.props.movieData);
-    console.log('this.props.movieData.data: ',this.props.movieData.data);
 
     // Tasks:
     //      the problem: 404 server errors: cannot retrieve some images
     //      temp solution: placeholder image with friendly message: 'cannot retrieve image...'
+    // add background opacity to text
+    // only display working paths for posters or add placeholder image
 
     return(
       <>

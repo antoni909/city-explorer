@@ -12,13 +12,6 @@ import Weather from './Weather';
 import './App.css';
 import axios from 'axios';
 
-/*// console.log(data, data.lon, data.lat);
-// argument value passed to data is an object containing lat and lon properties
-// request to backend where response will give a 10 day forecast (weather.data) and weather is the response object with heroku url
-// console.log('weather: ' ,weather);
-// console.log('weather.data: ', weather.data);
-// the endpoint /weather must match backend*/
-
 class App extends React.Component{
   constructor(props){
     super(props);
