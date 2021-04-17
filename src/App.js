@@ -49,22 +49,14 @@ class App extends React.Component{
     try{
       let dataLIQ = await axios.get(`https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_ACCESS_KEY_LOCATIONIQ_KEY}&q=${this.state.citySearchTextField}&format=json`);
 
-      // let weather = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/weather`, { params: { lat: data.lat, lon: data.lon } } );
-
       this.setState({
         display: true,
         displayCityName: dataLIQ.data[0].display_name,
         displayLat: dataLIQ.data[0].lat,
         displayLon: dataLIQ.data[0].lon,
       });
-      // pass arguments to weather and movie api here
-      // example: getWeather( argument ) where weather array is the arg for some (param)
-      console.log('arg passed: ',this.state.citySearchTextField);
       this.getLiveWeather( dataLIQ.data[0] );
       this.getLiveMovies(this.state.citySearchTextField);
-      // array of objects (10 cities)
-      // pass to backend request to get ask for lat/lon params
-      // something like: { parmas: { lat: data.lat, lon: data.lon } }
 
     }catch(err){
       this.setState({

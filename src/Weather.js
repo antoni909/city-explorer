@@ -14,7 +14,6 @@ class Weather extends React.Component{
         {this.props.display?
           <>
             {dailyForecast.map( (element,idx) => {
-              // console.log(element);
               return(
                 <Card key={idx}>
                   <Card.Body>
