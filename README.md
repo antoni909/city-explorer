@@ -157,8 +157,18 @@ Actual time needed to complete: 1.25 hours
 
 Estimate of time needed to complete: 1 hour
 
-Start time:
+Start time: 1840
 
-Finish time:
+Finish time:2100
 
-Actual time needed to complete:
+Actual time needed to complete: 2.3 hrs
+
+## Name of feature: refactor
+
+Estimate of time needed to complete: 30 minutes
+
+Start time: 1100
+
+Finish time: 1145
+
+Actual time needed to complete: 45 minutes
