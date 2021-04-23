@@ -19,9 +19,11 @@ class Weather extends React.Component{
                   <Card.Body>
                     <Card.Title>
                       Date: {element.date}
+                      {/* Date: {element.time} */}
                     </Card.Title>
                     <Card.Text>
                       Description: {element.description}
+                      {/* Description: {element.forecast} */}
                     </Card.Text>
                   </Card.Body>
                 </Card>
